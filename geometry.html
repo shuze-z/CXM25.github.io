@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>几何与拓扑 - 星辰知识库</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #6c63ff;
+            --light-blue: #a5b4fc;
+            --primary-purple: #8b5cf6;
+            --light-purple: #c4b5fd;
+            --star-gold: #fbbf24;
+            --math-blue: #3b82f6; /* 分析与方程的颜色 */
+            --geometry-green: #3b82f6; /* 改为分析与方程的蓝色 */
+            --algebra-orange: #3b82f6; /* 改为分析与方程的蓝色 */
+            --physics-red: #3b82f6; /* 改为分析与方程的蓝色 */
+            --creation-cyan: #06b6d4;
+            --text-light: #f8fafc;
+            --text-muted: #cbd5e1;
+            --text-dark: #1e293b;
+        }
+       
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1446776877081-d282a0f896e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+       
+        .navbar {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--light-purple);
+        }
+       
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, var(--light-blue), var(--light-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+       
+        .nav-link {
+            color: var(--text-light) !important;
+            font-weight: 500;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+       
+        .nav-link:hover {
+            color: var(--light-blue) !important;
+            transform: translateY(-2px);
+        }
+       
+        .hero-section {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+        }
+       
+        .section-title {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+       
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+            border-radius: 3px;
+        }
+       
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+            border-radius: 15px;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            height: 100%;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+       
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(108, 99, 255, 0.2);
+            border-color: var(--light-blue);
+        }
+       
+        .card-title, .card-text {
+            color: var(--text-light);
+        }
+       
+        /* 分析卡片主题 */
+        .analysis-card {
+            border-left: 4px solid var(--math-blue);
+        }
+       
+        .math-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+       
+        .math-badge.analysis {
+            background: linear-gradient(90deg, var(--math-blue), #60a5fa);
+        }
+       
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid var(--light-purple);
+            color: var(--text-light);
+        }
+       
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            padding: 8px 20px;
+        }
+       
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+        }
+       
+        .text-muted {
+            color: var(--text-muted) !important;
+        }
+       
+        .article-content {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(100, 116, 139, 0.3);
+        }
+       
+        .article-title {
+            border-bottom: 1px solid rgba(100, 116, 139, 0.3);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+       
+        .download-btn {
+            background: linear-gradient(90deg, var(--math-blue), #60a5fa);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            padding: 8px 20px;
+            color: var(--text-light);
+            transition: all 0.3s;
+        }
+       
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+            color: var(--text-light);
+        }
+       
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 100px 0 60px;
+            }
+            .display-4 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand nav-brand" href="index.html">星辰知识库</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">首页</a></li>
+                    <li class="nav-item"><a class="nav-link" href="math.html">数学殿堂</a></li>
+                    <li class="nav-item"><a class="nav-link" href="creation.html">星空之外</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">关于我</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 几何与拓扑页面英雄区域 -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">几何与拓扑</h1>
+            <p class="lead mb-4">研究形状、大小、相对位置以及空间属性的学科</p>
+            <a href="#articles" class="btn btn-primary me-2">查看笔记</a>
+            <a href="math.html" class="btn btn-outline-light">返回数学殿堂</a>
+        </div>
+    </section>
+
+    <!-- 文章列表 -->
+    <section class="container mb-5" id="articles">
+        <h2 class="section-title">几何与拓扑笔记</h2>
+       
+        <!-- 文章1 -->
+        <div class="article-content">
+            <div class="article-title">
+                <h3>测试</h3>
+                <span class="math-badge analysis">基础理论</span>
+                <small class="text-muted">2025年10月15日</small>
+            </div>
+            <p>本文详细介绍了微积分的基本概念，包括极限的定义、连续函数的性质以及它们在分析学中的重要性。通过多个实例展示了如何计算各种类型的极限，并探讨了连续函数在闭区间上的性质。</p>
+            <p>主要内容包括：</p>
+            <ul>
+                <li>极限的ε-δ定义及其直观理解</li>
+                <li>单侧极限与双侧极限的关系</li>
+                <li>连续函数的定义与基本性质</li>
+                <li>介值定理与最值定理的应用</li>
+            </ul>
+            <a href="pdfs/calculus_basics.pdf" class="download-btn" download>
+                <i class="fas fa-download me-2"></i>下载PDF
+            </a>
+        </div>
+       
+        <!-- 文章2 -->
+        <div class="article-content">
+            <div class="article-title">
+                <h3>微分方程初步：一阶常微分方程</h3>
+                <span class="math-badge analysis">微分方程</span>
+                <small class="text-muted">2025年10月10日</small>
+            </div>
+            <p>本文系统介绍了一阶常微分方程的基本理论和求解方法。从可分离变量方程到恰当微分方程，涵盖了多种常见类型及其解法。</p>
+            <p>主要内容包括：</p>
+            <ul>
+                <li>可分离变量微分方程的解法</li>
+                <li>齐次微分方程与线性微分方程</li>
+                <li>伯努利方程与恰当微分方程</li>
+                <li>一阶微分方程的应用实例</li>
+            </ul>
+            <a href="pdfs/ode_basics.pdf" class="download-btn" download>
+                <i class="fas fa-download me-2"></i>下载PDF
+            </a>
+        </div>
+       
+        <!-- 文章3 -->
+        <div class="article-content">
+            <div class="article-title">
+                <h3>多元函数微分学</h3>
+                <span class="math-badge analysis">多元分析</span>
+                <small class="text-muted">2025年10月5日</small>
+            </div>
+            <p>探讨多元函数的极限、连续性和可微性，重点介绍偏导数、方向导数和梯度的概念及其几何意义。</p>
+            <p>主要内容包括：</p>
+            <ul>
+                <li>多元函数的极限与连续性</li>
+                <li>偏导数的定义与计算</li>
+                <li>方向导数与梯度的关系</li>
+                <li>多元函数的极值问题</li>
+            </ul>
+            <a href="pdfs/multivariable_calculus.pdf" class="download-btn" download>
+                <i class="fas fa-download me-2"></i>下载PDF
+            </a>
+        </div>
+       
+        <!-- 文章4 -->
+        <div class="article-content">
+            <div class="article-title">
+                <h3>傅里叶分析入门</h3>
+                <span class="math-badge analysis">高级分析</span>
+                <small class="text-muted">2025年9月28日</small>
+            </div>
+            <p>介绍傅里叶级数的基本理论，包括傅里叶系数的计算、收敛性定理以及傅里叶变换的基本概念。</p>
+            <p>主要内容包括：</p>
+            <ul>
+                <li>周期函数的傅里叶级数展开</li>
+                <li>傅里叶系数的性质与计算</li>
+                <li>狄利克雷条件与收敛性</li>
+                <li>傅里叶变换的基本概念</li>
+            </ul>
+            <a href="pdfs/fourier_analysis.pdf" class="download-btn" download>
+                <i class="fas fa-download me-2"></i>下载PDF
+            </a>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-2">星辰知识库 &copy; 2025 - 数学与创作的永恒殿堂</p>
+            <p class="text-muted small">生命的意义在于探索未知，无论是通过公式还是幻想</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
