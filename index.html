@@ -13,6 +13,14 @@
             --primary-purple: #8b5cf6;
             --light-purple: #c4b5fd;
             --star-gold: #fbbf24;
+            --math-blue: #3b82f6; /* 分析与方程的颜色 */
+            --geometry-green: #3b82f6; /* 改为分析与方程的蓝色 */
+            --algebra-orange: #3b82f6; /* 改为分析与方程的蓝色 */
+            --physics-red: #3b82f6; /* 改为分析与方程的蓝色 */
+            --creation-cyan: #06b6d4;
+            --text-light: #f8fafc;
+            --text-muted: #cbd5e1;
+            --text-dark: #1e293b;
         }
        
         body {
@@ -21,7 +29,7 @@
                         url('https://images.unsplash.com/photo-1446776877081-d282a0f896e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-attachment: fixed;
-            color: #f3f4f6;
+            color: var(--text-light);
             min-height: 100vh;
         }
        
@@ -40,7 +48,7 @@
         }
        
         .nav-link {
-            color: #e2e8f0 !important;
+            color: var(--text-light) !important;
             font-weight: 500;
             margin: 0 5px;
             transition: all 0.3s;
@@ -64,6 +72,7 @@
             margin-bottom: 2rem;
             padding-bottom: 0.5rem;
             font-weight: 700;
+            color: var(--text-light);
         }
        
         .section-title::after {
@@ -85,6 +94,7 @@
             backdrop-filter: blur(5px);
             height: 100%;
             margin-bottom: 20px;
+            color: var(--text-light);
         }
        
         .card:hover {
@@ -93,14 +103,51 @@
             border-color: var(--light-blue);
         }
        
+        .card-title, .card-text {
+            color: var(--text-light);
+        }
+       
+        /* 数学分支卡片颜色主题 */
+        .math-card.analysis {
+            border-left: 4px solid var(--math-blue);
+        }
+       
+        .math-card.geometry {
+            border-left: 4px solid var(--geometry-green); /* 现在使用蓝色 */
+        }
+       
+        .math-card.algebra {
+            border-left: 4px solid var(--algebra-orange); /* 现在使用蓝色 */
+        }
+       
+        .math-card.physics {
+            border-left: 4px solid var(--physics-red); /* 现在使用蓝色 */
+        }
+       
         .math-badge {
             display: inline-block;
             padding: 5px 15px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
             margin-bottom: 10px;
+            color: var(--text-light);
+        }
+       
+        .math-badge.analysis {
+            background: linear-gradient(90deg, var(--math-blue), #60a5fa);
+        }
+       
+        .math-badge.geometry {
+            background: linear-gradient(90deg, var(--geometry-green), #60a5fa); /* 现在使用蓝色 */
+        }
+       
+        .math-badge.algebra {
+            background: linear-gradient(90deg, var(--algebra-orange), #60a5fa); /* 现在使用蓝色 */
+        }
+       
+        .math-badge.physics {
+            background: linear-gradient(90deg, var(--physics-red), #60a5fa); /* 现在使用蓝色 */
         }
        
         .knight-card {
@@ -111,6 +158,13 @@
             margin-bottom: 25px;
             background: rgba(30, 41, 59, 0.9);
             border: 1px solid rgba(100, 116, 139, 0.3);
+            color: var(--text-light);
+            transition: all 0.3s;
+        }
+       
+        .knight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.2);
         }
        
         .knight-icon {
@@ -118,15 +172,24 @@
             margin-bottom: 15px;
         }
        
-        .westerly { color: #fbbf24; }
-        .flame { color: #f97316; }
-        .thunder { color: #60a5fa; }
+        .westerly {
+            color: #fbbf24;
+        }
+       
+        .flame {
+            color: #f97316;
+        }
+       
+        .thunder {
+            color: #60a5fa;
+        }
        
         footer {
             background: rgba(15, 23, 42, 0.95);
             padding: 30px 0;
             margin-top: 50px;
             border-top: 1px solid var(--light-purple);
+            color: var(--text-light);
         }
        
         .btn-primary {
@@ -140,6 +203,30 @@
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+        }
+       
+        .text-muted {
+            color: var(--text-muted) !important;
+        }
+       
+        .text-westerly {
+            color: #fbbf24 !important;
+        }
+       
+        .text-flame {
+            color: #f97316 !important;
+        }
+       
+        .text-thunder {
+            color: #60a5fa !important;
+        }
+       
+        .text-creation {
+            color: var(--creation-cyan) !important;
+        }
+       
+        .latest-content .card {
+            border-left: 4px solid var(--creation-cyan);
         }
        
         @media (max-width: 768px) {
@@ -186,9 +273,9 @@
         <h2 class="section-title">数学殿堂</h2>
         <div class="row">
             <div class="col-md-6 col-lg-3">
-                <div class="card">
+                <div class="card math-card analysis">
                     <div class="card-body">
-                        <span class="math-badge">分析与方程</span>
+                        <span class="math-badge analysis">分析与方程</span>
                         <h5 class="card-title">微积分与微分方程</h5>
                         <p class="card-text">探索连续变化的数学理论，从极限到偏微分方程。</p>
                         <a href="analysis.html" class="btn btn-sm btn-primary">查看笔记</a>
@@ -196,9 +283,9 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
-                <div class="card">
+                <div class="card math-card geometry">
                     <div class="card-body">
-                        <span class="math-badge">几何与拓扑</span>
+                        <span class="math-badge geometry">几何与拓扑</span>
                         <h5 class="card-title">空间与形态的科学</h5>
                         <p class="card-text">研究形状、大小、相对位置以及空间属性的学科。</p>
                         <a href="geometry.html" class="btn btn-sm btn-primary">查看笔记</a>
@@ -206,9 +293,9 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
-                <div class="card">
+                <div class="card math-card algebra">
                     <div class="card-body">
-                        <span class="math-badge">代数与数论</span>
+                        <span class="math-badge algebra">代数与数论</span>
                         <h5 class="card-title">结构、关系与整数</h5>
                         <p class="card-text">从抽象代数结构到素数分布的神秘世界。</p>
                         <a href="algebra.html" class="btn btn-sm btn-primary">查看笔记</a>
@@ -216,9 +303,9 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
-                <div class="card">
+                <div class="card math-card physics">
                     <div class="card-body">
-                        <span class="math-badge">数学物理</span>
+                        <span class="math-badge physics">数学物理</span>
                         <h5 class="card-title">自然界的数学语言</h5>
                         <p class="card-text">用数学工具揭示物理世界的基本规律。</p>
                         <a href="physics.html" class="btn btn-sm btn-primary">查看笔记</a>
@@ -230,7 +317,7 @@
 
     <!-- 创作分支展示 -->
     <section class="container mb-5">
-        <h2 class="section-title">星空之外 · 骑士团</h2>
+        <h2 class="section-title text-creation">星空之外 · 骑士团</h2>
         <div class="row">
             <div class="col-md-4">
                 <div class="knight-card">
@@ -253,7 +340,7 @@
             <div class="col-md-4">
                 <div class="knight-card">
                     <div class="knight-icon thunder"><i class="fas fa-bolt"></i></div>
-                    <h4>雷霆骑士</h4>
+                    <h4>雷震骑士</h4>
                     <p class="text-muted">徽章：闪电 · 象征灵感与突破</p>
                     <p>捕捉思维中的闪电，将瞬间的灵感转化为永恒的智慧。</p>
                     <small class="text-thunder">"灵感如电，转瞬永恒"</small>
@@ -263,7 +350,7 @@
     </section>
 
     <!-- 最新内容 -->
-    <section class="container mb-5">
+    <section class="container mb-5 latest-content">
         <h2 class="section-title">最新笔记与创作</h2>
         <div class="row">
             <div class="col-lg-6">
@@ -273,7 +360,7 @@
                         <p class="card-text">关于曲率张量和黎曼流形的最新学习笔记，包含详细推导和可视化示例。</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <small class="text-muted">2025年10月28日</small>
-                            <span class="math-badge">几何与拓扑</span>
+                            <span class="math-badge geometry">几何与拓扑</span>
                         </div>
                     </div>
                 </div>
@@ -282,7 +369,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">《星穹之诗》第三章：离火骑士的誓言</h5>
-                        <p class="card-text">离火骑士团的新篇章，讲述了烈阳徽章背后不为人知的故事。</p>
+                        <p class="card-text>离火骑士团的新篇章，讲述了烈阳徽章背后不为人知的故事。</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <small class="text-muted">2025年10月25日</small>
                             <span class="badge bg-warning">星空之外</span>
