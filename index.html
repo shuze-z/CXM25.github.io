@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星辰知识库 - 数学与创作的殿堂</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #6c63ff;
+            --light-blue: #a5b4fc;
+            --primary-purple: #8b5cf6;
+            --light-purple: #c4b5fd;
+            --star-gold: #fbbf24;
+        }
+       
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('https://images.unsplash.com/photo-1446776877081-d282a0f896e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #f3f4f6;
+            min-height: 100vh;
+        }
+       
+        .navbar {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--light-purple);
+        }
+       
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, var(--light-blue), var(--light-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+       
+        .nav-link {
+            color: #e2e8f0 !important;
+            font-weight: 500;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+       
+        .nav-link:hover {
+            color: var(--light-blue) !important;
+            transform: translateY(-2px);
+        }
+       
+        .hero-section {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+        }
+       
+        .section-title {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            font-weight: 700;
+        }
+       
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+            border-radius: 3px;
+        }
+       
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+            border-radius: 15px;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            height: 100%;
+            margin-bottom: 20px;
+        }
+       
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(108, 99, 255, 0.2);
+            border-color: var(--light-blue);
+        }
+       
+        .math-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+       
+        .knight-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+        }
+       
+        .knight-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+       
+        .westerly { color: #fbbf24; }
+        .flame { color: #f97316; }
+        .thunder { color: #60a5fa; }
+       
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid var(--light-purple);
+        }
+       
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            padding: 8px 20px;
+        }
+       
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+        }
+       
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 100px 0 60px;
+            }
+            .display-4 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand nav-brand" href="index.html">星辰知识库</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">首页</a></li>
+                    <li class="nav-item"><a class="nav-link" href="math.html">数学殿堂</a></li>
+                    <li class="nav-item"><a class="nav-link" href="creation.html">星空之外</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">关于我</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主页英雄区域 -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">探索数学与创作的无限宇宙</h1>
+            <p class="lead mb-4">在公式与幻想之间，寻找真理与美的平衡</p>
+            <a href="math.html" class="btn btn-primary me-2">进入数学殿堂</a>
+            <a href="creation.html" class="btn btn-outline-light">探索星空之外</a>
+        </div>
+    </section>
+
+    <!-- 数学分支展示 -->
+    <section class="container mb-5">
+        <h2 class="section-title">数学殿堂</h2>
+        <div class="row">
+            <div class="col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <span class="math-badge">分析与方程</span>
+                        <h5 class="card-title">微积分与微分方程</h5>
+                        <p class="card-text">探索连续变化的数学理论，从极限到偏微分方程。</p>
+                        <a href="analysis.html" class="btn btn-sm btn-primary">查看笔记</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <span class="math-badge">几何与拓扑</span>
+                        <h5 class="card-title">空间与形态的科学</h5>
+                        <p class="card-text">研究形状、大小、相对位置以及空间属性的学科。</p>
+                        <a href="geometry.html" class="btn btn-sm btn-primary">查看笔记</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <span class="math-badge">代数与数论</span>
+                        <h5 class="card-title">结构、关系与整数</h5>
+                        <p class="card-text">从抽象代数结构到素数分布的神秘世界。</p>
+                        <a href="algebra.html" class="btn btn-sm btn-primary">查看笔记</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <span class="math-badge">数学物理</span>
+                        <h5 class="card-title">自然界的数学语言</h5>
+                        <p class="card-text">用数学工具揭示物理世界的基本规律。</p>
+                        <a href="physics.html" class="btn btn-sm btn-primary">查看笔记</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 创作分支展示 -->
+    <section class="container mb-5">
+        <h2 class="section-title">星空之外 · 骑士团</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="knight-card">
+                    <div class="knight-icon westerly"><i class="fas fa-feather-alt"></i></div>
+                    <h4>西风骑士</h4>
+                    <p class="text-muted">徽章：蒲公英 · 象征自由与传播</p>
+                    <p>守护思想的自由之风，将知识的种子如蒲公英般播撒到远方。</p>
+                    <small class="text-westerly">"思想如风，无远弗届"</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="knight-card">
+                    <div class="knight-icon flame"><i class="fas fa-sun"></i></div>
+                    <h4>离火骑士</h4>
+                    <p class="text-muted">徽章：烈阳 · 象征能量与创造</p>
+                    <p>以炽热之心点燃创造之火，用光芒驱散无知与迷茫。</p>
+                    <small class="text-flame">"创造如焰，照亮前路"</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="knight-card">
+                    <div class="knight-icon thunder"><i class="fas fa-bolt"></i></div>
+                    <h4>雷霆骑士</h4>
+                    <p class="text-muted">徽章：闪电 · 象征灵感与突破</p>
+                    <p>捕捉思维中的闪电，将瞬间的灵感转化为永恒的智慧。</p>
+                    <small class="text-thunder">"灵感如电，转瞬永恒"</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 最新内容 -->
+    <section class="container mb-5">
+        <h2 class="section-title">最新笔记与创作</h2>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">黎曼几何笔记（更新至第五章）</h5>
+                        <p class="card-text">关于曲率张量和黎曼流形的最新学习笔记，包含详细推导和可视化示例。</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">2025年10月28日</small>
+                            <span class="math-badge">几何与拓扑</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">《星穹之诗》第三章：离火骑士的誓言</h5>
+                        <p class="card-text">离火骑士团的新篇章，讲述了烈阳徽章背后不为人知的故事。</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">2025年10月25日</small>
+                            <span class="badge bg-warning">星空之外</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-2">星辰知识库 &copy; 2025 - 数学与创作的永恒殿堂</p>
+            <p class="text-muted small">生命的意义在于探索未知，无论是通过公式还是幻想</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
