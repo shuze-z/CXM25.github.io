@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星空之外 - 数学与创作的圣堂</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #6c63ff;
+            --light-blue: #a5b4fc;
+            --primary-purple: #8b5cf6;
+            --light-purple: #c4b5fd;
+            --star-gold: #fbbf24;
+            --creation-cyan: #06b6d4;
+            --text-light: #f8fafc;
+            --text-muted: #cbd5e1;
+            --text-dark: #1e293b;
+        }
+       
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)),
+                        url('https://images.unsplash.com/photo-1446776877081-d282a0f896e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+       
+        .creation-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+                        url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&auto=format&fit=crop&w=2050&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 150px 0 100px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+       
+        .creation-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.9) 70%);
+            z-index: 1;
+        }
+       
+        .creation-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+       
+        .navbar {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--light-purple);
+        }
+       
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, var(--light-blue), var(--light-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+       
+        .nav-link {
+            color: var(--text-light) !important;
+            font-weight: 500;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+       
+        .nav-link:hover {
+            color: var(--light-blue) !important;
+            transform: translateY(-2px);
+        }
+       
+        .section-title {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+       
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+            border-radius: 3px;
+        }
+       
+        .section-title.creation::after {
+            background: linear-gradient(90deg, var(--creation-cyan), #22d3ee);
+        }
+       
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+            border-radius: 15px;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            height: 100%;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+       
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(108, 99, 255, 0.2);
+            border-color: var(--light-blue);
+        }
+       
+        .creation-card {
+            border-left: 4px solid var(--creation-cyan);
+        }
+       
+        .creation-card:hover {
+            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+            border-color: var(--creation-cyan);
+        }
+       
+        .knight-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+            color: var(--text-light);
+            transition: all 0.3s;
+        }
+       
+        .knight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.2);
+        }
+       
+        .knight-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+       
+        .westerly {
+            color: #fbbf24;
+        }
+       
+        .flame {
+            color: #f97316;
+        }
+       
+        .thunder {
+            color: #60a5fa;
+        }
+       
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid var(--light-purple);
+            color: var(--text-light);
+        }
+       
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            padding: 8px 20px;
+        }
+       
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+        }
+       
+        .btn-creation {
+            background: linear-gradient(90deg, var(--creation-cyan), #22d3ee);
+        }
+       
+        .btn-creation:hover {
+            box-shadow: 0 5px 15px rgba(6, 182, 212, 0.4);
+        }
+       
+        .text-muted {
+            color: var(--text-muted) !important;
+        }
+       
+        .text-westerly {
+            color: #fbbf24 !important;
+        }
+       
+        .text-flame {
+            color: #f97316 !important;
+        }
+       
+        .text-thunder {
+            color: #60a5fa !important;
+        }
+       
+        .text-creation {
+            color: var(--creation-cyan) !important;
+        }
+       
+        .story-excerpt {
+            position: relative;
+            padding: 25px;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 10px;
+            border-left: 4px solid var(--creation-cyan);
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1.6;
+        }
+       
+        .story-excerpt::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            color: rgba(6, 182, 212, 0.3);
+            font-family: Georgia, serif;
+        }
+       
+        .story-excerpt::after {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            bottom: -30px;
+            right: 10px;
+            color: rgba(6, 182, 212, 0.3);
+            font-family: Georgia, serif;
+        }
+       
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 40px 0;
+        }
+       
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--creation-cyan), var(--primary-purple));
+        }
+       
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+       
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--creation-cyan);
+            border: 3px solid rgba(30, 41, 59, 0.9);
+        }
+       
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--creation-cyan);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+       
+        .quote-highlight {
+            border-left: 4px solid var(--star-gold);
+            padding-left: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+       
+        @media (max-width: 768px) {
+            .creation-hero {
+                padding: 120px 0 80px;
+            }
+            .display-4 {
+                font-size: 2rem;
+            }
+        }
+       
+        /* 黑洞旋转动画 */
+        @keyframes blackhole {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+       
+        .blackhole-icon {
+            display: inline-block;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: blackhole 20s linear infinite;
+            color: var(--creation-cyan);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand nav-brand" href="index.html">星辰知识库</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">首页</a></li>
+                    <li class="nav-item"><a class="nav-link" href="math.html">数学殿堂</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="creation.html">星空之外</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">关于我</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 - 使用星际穿越黑洞主题 -->
+    <section class="creation-hero">
+        <div class="container creation-hero-content">
+            <div class="blackhole-icon">
+                <i class="fas fa-circle-notch"></i>
+            </div>
+            <h1 class="display-4 fw-bold mb-3">星空之外 · 创作宇宙</h1>
+            <p class="lead mb-4">在公式与幻想之间，探索真理与美的平衡</p>
+            <a href="#stories" class="btn btn-primary btn-creation me-2">探索创作</a>
+            <a href="#knights" class="btn btn-outline-light">了解骑士团</a>
+        </div>
+    </section>
+
+    <!-- 创作故事展示 -->
+    <section class="container mb-5" id="stories">
+        <h2 class="section-title creation">创作宇宙</h2>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card creation-card">
+                    <div class="card-body">
+                        <h3 class="card-title">《星穹之诗》第三章：离火骑士的誓言</h3>
+                        <div class="text-muted mb-3">发布于 2025年10月25日 · 阅读时间 15分钟</div>
+                       
+                        <div class="story-excerpt">
+                            在无尽的星海中，离火骑士站立于燃烧的恒星边缘。他的铠甲反射着炽热的光芒，仿佛本身就是一颗微缩的恒星。他知道，一旦跨过这道界限，就再也无法回头。但为了守护知识的火种，他必须前行。
+                        </div>
+                       
+                        <p>星穹历 327 年，离火骑士团接到了一项前所未有的任务——穿越Gargantua黑洞，寻找传说中的"创世之书"。据古籍记载，这本书记载了宇宙诞生之初的所有秘密，是连接数学真理与创作灵感的桥梁。</p>
+                       
+                        <p>离火骑士阿尔德林是团中最年轻的成员，但他对知识的渴望超越了许多前辈。在准备穿越黑洞的前夜，他独自站在观测台上，凝视着那片扭曲的时空。</p>
+                       
+                        <div class="quote-highlight">
+                            "数学是宇宙的语言，而创作是灵魂的呼吸。在这两者之间，存在着一个我们尚未完全理解的维度。" —— 离火骑士团训诫
+                        </div>
+                       
+                        <p>阿尔德林回想起自己加入骑士团的初衷。那是在一次数学研讨会上，他偶然听到了一位老骑士关于"拓扑诗歌"的演讲。那一刻，他意识到数学与创作并非对立，而是同一真理的不同表达。</p>
+                       
+                        <a href="#" class="btn btn-primary btn-creation">继续阅读</a>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">创作时间线</h5>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-date">2025年10月</div>
+                                <div>《星穹之诗》第三章发布</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">2025年9月</div>
+                                <div>短篇故事集《数学家的梦境》</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">2025年8月</div>
+                                <div>诗歌《黎曼曲面的旋律》</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">2025年7月</div>
+                                <div>科幻小说《黑洞图书馆》完成</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- 骑士团介绍 -->
+    <section class="container mb-5" id="knights">
+        <h2 class="section-title creation">星空骑士团</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="knight-card">
+                    <div class="knight-icon westerly"><i class="fas fa-feather-alt"></i></div>
+                    <h4>西风骑士</h4>
+                    <p class="text-muted">徽章：蒲公英 · 象征自由与传播</p>
+                    <p>守护思想的自由之风，将知识的种子如蒲公英般播撒到远方。西风骑士擅长将复杂的数学概念转化为通俗易懂的寓言和故事。</p>
+                    <small class="text-westerly">"思想如风，无远弗届"</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="knight-card">
+                    <div class="knight-icon flame"><i class="fas fa-sun"></i></div>
+                    <h4>离火骑士</h4>
+                    <p class="text-muted">徽章：烈阳 · 象征能量与创造</p>
+                    <p>以炽热之心点燃创造之火，用光芒驱散无知与迷茫。离火骑士专注于将数学灵感转化为艺术作品和科幻创作。</p>
+                    <small class="text-flame">"创造如焰，照亮前路"</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="knight-card">
+                    <div class="knight-icon thunder"><i class="fas fa-bolt"></i></div>
+                    <h4>雷震骑士</h4>
+                    <p class="text-muted">徽章：闪电 · 象征灵感与突破</p>
+                    <p>捕捉思维中的闪电，将瞬间的灵感转化为永恒的智慧。雷震骑士擅长在数学与哲学的交叉领域寻找突破。</p>
+                    <small class="text-thunder">"灵感如电，转瞬永恒"</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 最新创作 -->
+    <section class="container mb-5">
+        <h2 class="section-title creation">最新创作</h2>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="card creation-card">
+                    <div class="card-body">
+                        <h5 class="card-title">《维度之歌》</h5>
+                        <p class="card-text">一首关于高维空间与人类感知的诗歌，尝试用语言描述数学中的多维概念。</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">2025年10月20日</small>
+                            <span class="badge bg-info">诗歌</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card creation-card">
+                    <div class="card-body">
+                        <h5 class="card-title">《无限旅馆悖论新编》</h5>
+                        <p class="card-text">基于希尔伯特旅馆悖论的短篇科幻故事，探讨无限与有限的哲学意义。</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">2025年10月15日</small>
+                            <span class="badge bg-warning">科幻</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card creation-card">
+                    <div class="card-body">
+                        <h5 class="card-title">《对称之美》摄影集</h5>
+                        <p class="card-text">通过摄影探索自然界和建筑中的对称性，附有群论数学解释。</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">2025年10月10日</small>
+                            <span class="badge bg-success">摄影</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-2">星辰知识库 &copy; 2025 - 数学与创作的永恒圣堂</p>
+            <p class="text-muted small">生命的意义在于探索未知，无论是通过公式还是幻想</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
